@@ -29,7 +29,22 @@ public class Person {
 	}
 	
 	public void setPersonId(int personId) {
-		this.
+		this.personid = personId;
 	}
 	
+	public void setlastname(String lastname) {
+		this.lastname = lastname;
+	}
+	
+	public void setfirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	
+	public void setAddress (String address) {
+		this.address = address;
+	}
+	
+	public void setCity (String city) {
+		this.city = city;
+	}
 }
