@@ -8,6 +8,16 @@ public class Person {
 	private String address;
 	private String city;
 	
+	public Person() {}
+	
+	public Person (int personid, String lastname, String firstname, String address, String city) {
+		this.personid = personid;
+		this.lastname = lastname;
+		this.firstname = firstname;
+		this.address = address;
+		this.city = city;
+	}
+	
 	public int getPersonId() {
 		return personid;
 	}
@@ -16,15 +26,15 @@ public class Person {
 		return lastname;
 	}
 	
-	public String firstname() {
+	public String getfirstname() {
 		return firstname;
 	}
 	
-	public String address() {
+	public String getaddress() {
 		return address;
 	}
 	
-	public String city() {
+	public String getcity() {
 		return city;
 	}
 	

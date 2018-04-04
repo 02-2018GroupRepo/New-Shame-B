@@ -1,21 +1,41 @@
 package bootcamp.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import bootcamp.model.Order;
+import bootcamp.model.Person;
+import bootcamp.services.OrderService;
 
 @RestController
 public class OrderController {
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-
-    @RequestMapping("/greeting")
-    public Order greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Order(counter.incrementAndGet(),
-                            String.format(template, name));
+	@Autowired
+    private OrderService service;
+	
+    @RequestMapping("/getPerson")
+    public Person getPerson(@RequestParam(value = "personId") int id) {
+        return service.getPersonById(id);
     }
-}
+    
+    @RequestMapping("/addPerson")
+    public Person addPerson(@RequestParam(value = "personId") int id) {
+    	service.addPerson(new Person(id, "hampson", "erica", "123", "Atlanta"));
+    	return service.getPersonById(id);
+    }
+    
+    @RequestMapping("/delete")
+    public void deletePerson(@RequestParam(value = "personId") int id) {
+    	service.deleteField(id);
+    }
+    
+    @RequestMapping("/update")
+    public void updatePerson(@RequestParam(value = "personId") int id,
+    						@RequestParam(value = "lastname") String lastname) {
+    	Person person = service.getPersonById(id);
+    	person.setlastname(lastname);
+    	service.updateField(person);
+    }
+    
+  }
