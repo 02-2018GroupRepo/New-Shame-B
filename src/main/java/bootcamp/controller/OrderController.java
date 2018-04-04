@@ -1,12 +1,11 @@
 package bootcamp.controller;
 
+import bootcamp.model.Order;
+import bootcamp.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import bootcamp.model.Person;
-import bootcamp.services.OrderService;
 
 @RestController
 public class OrderController {
@@ -14,28 +13,28 @@ public class OrderController {
 	@Autowired
     private OrderService service;
 	
-    @RequestMapping("/getPerson")
-    public Person getPerson(@RequestParam(value = "personId") int id) {
-        return service.getPersonById(id);
+    @RequestMapping("/getOrderByNumber")
+    public Order getOrderByNumber(@RequestParam int order_Number) {
+        return service.getOrderByNumber(order_Number);
     }
-    
-    @RequestMapping("/addPerson")
-    public Person addPerson(@RequestParam(value = "personId") int id) {
-    	service.addPerson(new Person(id, "hampson", "erica", "123", "Atlanta"));
-    	return service.getPersonById(id);
+
+    @RequestMapping("/addOrder")
+    public Order addOrder(@RequestParam int order_Number) {
+    	service.addOrder(new Order(order_Number, "Name_Here", "Checkout Time Stamp" , "Return Time Stamp",
+                "Estimated Return Date", "electric chainsaw", "Smyrna", 2.00d));
+    	return service.getOrderByNumber(order_Number);
     }
-    
-    @RequestMapping("/delete")
-    public void deletePerson(@RequestParam(value = "personId") int id) {
-    	service.deleteField(id);
+
+    @RequestMapping("/deleteOrder")
+    public void deleteOrder(@RequestParam int order_Number) {
+    	service.deleteOrder(order_Number);
     }
-    
-    @RequestMapping("/update")
-    public void updatePerson(@RequestParam(value = "personId") int id,
-    						@RequestParam(value = "lastname") String lastname) {
-    	Person person = service.getPersonById(id);
-    	person.setlastname(lastname);
-    	service.updateField(person);
+
+    @RequestMapping("/updateOrder")
+    public void updateOrder(@RequestParam int order_Number,
+    						@RequestParam String customer_Name) {
+    	Order order = service.getOrderByNumber(order_Number);
+    	order.setCustomerName(customer_Name);
+    	service.updateOrder(order);
     }
-    
-  }
+}

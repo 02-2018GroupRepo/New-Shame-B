@@ -1,29 +1,28 @@
 package bootcamp.services;
 
+import bootcamp.dao.OrderDao;
+import bootcamp.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import bootcamp.dao.OrderDao;
-import bootcamp.model.Person;
 
 @Component
 public class OrderService {
 	
 	@Autowired
-	private OrderDao dao;
+	private OrderDao orderDao;
 	
-	public Person getPersonById(int personid) {
-		return dao.getPersonById(personid);
+	public Order getOrderByNumber(int order_Number) {
+		return orderDao.getOrderByNumber(order_Number);
 	}
 	
-	public void addPerson(Person person) {
-		dao.addPerson(person);
+	public void addOrder(Order order) {
+		orderDao.addOrder(order);
 	}
 
-	public void deleteField(int personid) {
-		dao.deleteField(personid);
+	public void deleteOrder(int order_Number) {
+		orderDao.deleteOrder(order_Number);
 	}
-	public void updateField(Person person) {
-		dao.updateField(person);
+	public void updateOrder(Order order) {
+		orderDao.updateOrder(order);
 	}
 }
