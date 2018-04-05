@@ -31,7 +31,7 @@ public class OrderController {
     }
     
     @RequestMapping("/update")
-    public void updatePerson(@RequestParam(value = "personId") int id,
+    public void updatePersonLastName(@RequestParam(value = "personId") int id,
     						@RequestParam(value = "lastname") String lastname) {
     	Person person = service.getPersonById(id);
     	person.setlastname(lastname);
